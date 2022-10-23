@@ -15,10 +15,22 @@ model Courses {
   name        String   @unique
   description String
   duration    Int
+  teacher     Teachers @relation(fields: [teacher_id], references: [id])
+  teacher_id  String
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now())
 
   @@map("courses")
+}
+
+model Teachers {
+  id         String    @id @default(uuid())
+  name       String
+  created_at DateTime  @default(now())
+  updated_at DateTime  @default(now())
+  courses    Courses[]
+
+  @@map("teachers")
 }
 
 model Users {
