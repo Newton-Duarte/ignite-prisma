@@ -50,3 +50,11 @@ model Profiles {
 
   @@map("profiles")
 }
+
+model Tags {
+  name       String   @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@map("tags")
+}
