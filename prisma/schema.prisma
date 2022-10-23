@@ -20,3 +20,21 @@ model Courses {
 
   @@map("courses")
 }
+
+model Users {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  profile    Profiles @relation(fields: [profile_id], references: [id])
+  profile_id String   @unique
+
+  @@map("users")
+}
+
+model Profiles {
+  id        String @id @default(uuid())
+  firstName String
+  lastName  String
+  user      Users?
+
+  @@map("profiles")
+}
